@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Emote Manager</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css"/>
+  <script defer type="module" src="js/index.js"></script>
+</head>
+<body>
+  <div class="notification">
+    <p class="notification__text"></p>
+  </div>
+  <header>
+    <h1>Emote Manager</h1>
+    <h2>A easy way to manage emotes in large scale</h2>
+  </header>
+  <main>
+    <div class="token">
+      <input type="text" name="token" placeholder="Token" class="token__input"/>
+      <button class="token__help">?</button>
+    </div>
+    <div class="emote-list">
+      <textarea placeholder="Emote List" class="emote-list__textarea"></textarea>
+    </div>
+    <div class="progress-bar"></div>
+    <div class="controls">
+      <button class="controls__add" onclick="app.addEmotes()">Add</button>
+      <button class="controls__reset" onclick="app.resetEmotes()">Reset</button>
+      <button class="controls__remove" onclick="app.removeEmotes()">Remove</button>
+    </div>
+  </main>
+</body>
+</html>

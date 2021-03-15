@@ -1,0 +1,36 @@
+const emoteUrlRegex = /https:\/\/betterttv.com\/emotes\/(.+)/;
+
+export function getUserId(token) {
+  const jwtParts = token.split('\.');
+  const jwtPayloadEncoded = jwtParts[1];
+  const jwtPayloadJsonString = atob(jwtPayloadEncoded);
+  const jwtPayload = JSON.parse(jwtPayloadJsonString);
+
+  return jwtPayload.id;
+}
+
+export function getToken() {
+  const tokenElement = document.querySelector('.token__input');
+
+  return tokenElement.value;
+}
+
+export function getEmoteIds() {
+  const emoteUrlsElement = document.querySelector('.emote-list__textarea');
+  const emoteUrls = emoteUrlsElement.value.split('\n');
+
+  // https://betterttv.com/emotes/5b77ac3af7bddc567b1d5fb2
+  return emoteUrls.map((emoteUrl) => {
+    const match = emoteUrl.match(emoteUrlRegex);
+
+    return match ? match[1] : null;
+  });
+}
+
+export async function delay(delay) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve();
+    }, delay);
+  });
+}
