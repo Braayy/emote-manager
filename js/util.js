@@ -19,7 +19,6 @@ export function getEmoteIds() {
   const emoteUrlsElement = document.querySelector('.emote-list__textarea');
   const emoteUrls = emoteUrlsElement.value.split('\n');
 
-  // https://betterttv.com/emotes/5b77ac3af7bddc567b1d5fb2
   return emoteUrls.map((emoteUrl) => {
     const match = emoteUrl.match(emoteUrlRegex);
 
