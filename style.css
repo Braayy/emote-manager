@@ -117,6 +117,10 @@ main .token__help {
   width: 30px;
   height: 30px;
 
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+
   border: none;
   border-radius: 10px;
   background: var(--secondary);
