@@ -16,10 +16,10 @@ export function notify(message, level) {
   notificationElement.classList.add('notification--show');
 
   if (notificationHideTimeout !== 0) {
-    clearInterval(notificationHideTimeout);
+    clearTimeout(notificationHideTimeout);
   }
 
-  setInterval(() => {
+  setTimeout(() => {
     notificationElement.classList.remove('notification--show');
   }, NOTIFICATION_DELAY);
 }
