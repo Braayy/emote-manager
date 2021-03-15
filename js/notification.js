@@ -11,6 +11,8 @@ export function notify(message, level) {
 
   notificationTextElement.innerHTML = message;
 
+  notificationElement.classList.remove('notification--' + INFO, 'notification--' + ERROR);
+
   notificationElement.classList.add('notification--' + level);
 
   notificationElement.classList.add('notification--show');
