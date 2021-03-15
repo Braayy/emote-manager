@@ -1,4 +1,4 @@
-const NOTIFICATION_DELAY = 2000;
+import { NOTIFICATION_DELAY } from './config.js';
 
 let notificationHideTimeout = 0;
 

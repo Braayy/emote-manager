@@ -1,8 +1,7 @@
 import { delay, getEmoteIds, getToken, getUserId } from './util.js';
 import { ERROR, INFO, notify } from './notification.js'
 import { updateProgressBar, clearProgressBar } from './progressbar.js';
-
-const REQUEST_DELAY = 200;
+import { REQUEST_DELAY } from './config.js';
 
 const UPDATE_EMOTE_URL = 'https://api.betterttv.net/3/emotes/{emoteId}/shared/{userId}'
 const LIST_EMOTES_URL = 'https://api.betterttv.net/3/users/{userId}?limited=false';
