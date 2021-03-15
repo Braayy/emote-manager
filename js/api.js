@@ -1,4 +1,4 @@
-import { delay, getEmoteIds, getToken, getUserId } from './util.js';
+import { delay, getEmoteIds, getUserId } from './util.js';
 import { ERROR, INFO, notify } from './notification.js'
 import { updateProgressBar, clearProgressBar } from './progressbar.js';
 import { REQUEST_DELAY } from './config.js';
@@ -9,13 +9,7 @@ const LIST_EMOTES_URL = 'https://api.betterttv.net/3/users/{userId}?limited=fals
 const ADD_EMOTE = 'PUT';
 const REMOVE_EMOTE = 'DELETE';
 
-async function update(action, emoteIds = getEmoteIds()) {
-  const token = getToken();
-
-  if (!token) {
-    throw 'Empty token! Click the \'?\' button to get help';
-  }
-
+async function update(token, action, emoteIds = getEmoteIds()) {
   if (emoteIds.some((emoteId) => !emoteId)) {
     throw 'Some emote urls are invalid!';
   }
@@ -50,13 +44,7 @@ async function update(action, emoteIds = getEmoteIds()) {
   clearProgressBar();
 }
 
-async function getUserEmotes() {
-  const token = getToken();
-
-  if (!token) {
-    throw 'Empty token! Click the \'?\' button to get help';
-  }
-
+async function getUserEmotes(token) {
   const userId = getUserId(token);
 
   const listEmotesReady = LIST_EMOTES_URL.replace('{userId}', userId);
@@ -67,8 +55,8 @@ async function getUserEmotes() {
   return responseJson.sharedEmotes;
 }
 
-export function addEmotes() {
-  update(ADD_EMOTE)
+export function addEmotes(token) {
+  update(token, ADD_EMOTE)
     .then(() => {
       notify('All listed emotes were added!', INFO);
     })
@@ -83,8 +71,8 @@ export function addEmotes() {
     })
 }
 
-export function removeEmotes() {
-  update(REMOVE_EMOTE)
+export function removeEmotes(token) {
+  update(token, REMOVE_EMOTE)
     .then(() => {
       notify('All listed emotes were removed!', INFO);
     })
@@ -99,12 +87,12 @@ export function removeEmotes() {
     })
 }
 
-export function resetEmotes() {
+export function resetEmotes(token, ) {
   async function reset() {
-    const emotes = await getUserEmotes();
+    const emotes = await getUserEmotes(token);
     const emoteIds = emotes.map((emote) => emote.id);
 
-    await update(REMOVE_EMOTE, emoteIds);
+    await update(token, REMOVE_EMOTE, emoteIds);
   }
 
   reset()

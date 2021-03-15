@@ -9,12 +9,6 @@ export function getUserId(token) {
   return jwtPayload.id;
 }
 
-export function getToken() {
-  const tokenElement = document.querySelector('.token__input');
-
-  return tokenElement.value;
-}
-
 export function getEmoteIds() {
   const emoteUrlsElement = document.querySelector('.emote-list__textarea');
   const emoteUrls = emoteUrlsElement.value.split('\n');
