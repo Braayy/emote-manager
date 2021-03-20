@@ -16,7 +16,6 @@
 
     color: $color;
     border: 2px solid $color;
-    border-radius: 10px;
 
     &:hover {
       color: white;
@@ -76,7 +75,7 @@
   &__progress-bar {
     height: 15px;
     border-radius: 10px;
-    background: $secondary;
+    background: var(--progress-bar-empty);
   }
 
   &__controls {
@@ -93,6 +92,7 @@
       height: 100%;
 
       padding: 10px;
+      border-radius: 10px;
 
       margin-right: 5px;
 

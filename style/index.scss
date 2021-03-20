@@ -8,6 +8,11 @@
 
 @import './media-query';
 
+:root {
+  --progress-bar-empty: #{$secondary};
+  --progress-bar-progress: #{$progress-bar};
+}
+
 * {
   font-family: $font;
 }

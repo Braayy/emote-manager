@@ -1,5 +1,7 @@
 const emoteUrlRegex = /https:\/\/betterttv.com\/emotes\/([a-z0-9]+)/;
 
+const emoteListElement: HTMLTextAreaElement = document.querySelector('.manager-form__emote-list');
+
 export function getUserId(token: string): string {
   const jwtParts = token.split('\.');
   const jwtPayloadEncoded = jwtParts[1];
@@ -10,8 +12,7 @@ export function getUserId(token: string): string {
 }
 
 export function getEmoteIds(): string[] {
-  const emoteUrlsElement: HTMLTextAreaElement = document.querySelector('.manager-form__emote-list');
-  const emoteUrls = emoteUrlsElement.value.split('\n');
+  const emoteUrls = emoteListElement.value.split('\n');
 
   return emoteUrls.map((emoteUrl) => {
     const match = emoteUrl.match(emoteUrlRegex);
@@ -26,4 +27,8 @@ export function delay(ms: number): Promise<void> {
       resolve();
     }, ms);
   });
+}
+
+export function validateToken(token: string): boolean {
+  return Boolean(token.match(/^[a-zA-Z0-9-_]+\.[a-zA-Z0-9-_]+\.[a-zA-Z0-9-_]+$/));
 }

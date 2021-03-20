@@ -2,6 +2,7 @@ import '../style/index.scss';
 import { acceptWarning } from './warning';
 import { add, remove, reset } from './actions';
 import { Level, notify } from './notification';
+import { validateToken } from './util';
 
 import { EmoteManager } from './types';
 
@@ -10,9 +11,18 @@ window.emoteManager = {
 
   setToken(tokenInput: HTMLInputElement) {
     setTimeout(() => {
-      this.token = tokenInput.value;
-
+      const token = tokenInput.value;
       tokenInput.value = '';
+
+      if (!validateToken(token)) {
+        notify('Invalid Token', Level.ERROR);
+
+        return;
+      }
+
+      this.token = token;
+
+      
       tokenInput.remove();
 
       notify('The token was pasted!', Level.INFO);
