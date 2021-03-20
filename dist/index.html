@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emote Manager</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="/assets/index.cc7072d8.js"></script>
+  <link rel="stylesheet" href="/assets/index.9127c61d.css">
+</head>
+  <body>
+    <div id="app">
+      <div class="notification">
+        <p class="notification__text">All emotes were added</p>
+      </div>
+      <header class="header">
+        <div class="header__button-wrapper header__button-wrapper--help">
+          <button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-help-circle"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          </button>
+        </div>
+        <hgroup class="header__title">
+          <h1>Emote Manager</h1>
+          <h2>Managing BTTV emotes in large scale</h2>
+        </hgroup>
+      </header>
+      <main class="content">
+        <form class="manager-form" onsubmit="return false">
+          <input class="manager-form__token" type="password" placeholder="Paste your token here!" autocomplete="off" onpaste="emoteManager.setToken(this)" />
+          <textarea class="manager-form__emote-list" placeholder="Emote List" autocomplete="off"></textarea>
+          <div class="manager-form__progress-bar"></div>
+          <div class="manager-form__controls">
+            <button class="manager-form__controls--add" onclick="emoteManager.add()">Add</button>
+            <button class="manager-form__controls--reset" onclick="emoteManager.reset()">Reset</button>
+            <button class="manager-form__controls--remove" onclick="emoteManager.remove()">Remove</button>
+          </div>
+        </form>
+      </main>
+      <div class="warning-modal-wrapper">
+        <div class="warning-modal">
+          <h1 class="warning-modal__title">Warning</h1>
+          <h2 class="warning-modal__subtitle">Before using this app, make sure to <b>BE CAREFUL</b> with your token!!</h2>
+          <p class="warning-modal__text">BetterTTV does not provide a official way to interact with it!</p>
+          <p class="warning-modal__text">So pasting your token here is necessary!</p>
+          <p class="warning-modal__text">Your token means a authorization to make private things on your account(like adding or removing emotes)</p>
+          <p class="warning-modal__text warning-modal__text--red">If you are not careful with it, it could lead to someone getting it and you can be <b>HACKED</b>!</p>
+          <p class="warning-modal__text">This app is safe to use because it is protected by Github's Certificate(no one between you and BetterTTV API can see anything) and everything happens on the Client Side!</p>
+          <p class="warning-modal__text">After you pasted the token on the Token field, immediately copy something else to avoid wrong paste in other places!</p>
+          <p class="warning-modal__text">As soon as BetterTTV allows auth tokens i will update this</p>
+          <button class="warning-modal__accept" onclick="emoteManager.acceptWarning()">I have read this warning</button>
+        </div>
+      </div>
+    </div>
+    
+  </body>
+</html>
