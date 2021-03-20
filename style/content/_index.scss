@@ -1,0 +1,8 @@
+@import './manager-form';
+
+.content {
+  grid-area: content;
+
+  display: flex;
+  justify-content: center;
+}

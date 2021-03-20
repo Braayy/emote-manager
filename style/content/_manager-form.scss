@@ -1,0 +1,112 @@
+@import '../theme';
+
+@mixin colorize-button($name) {
+  $color: #FFFFFF;
+
+  @if $name == 'add' {
+    $color: $button-add;
+  } @else if $name == 'reset' {
+    $color: $button-reset;
+  } @else {
+    $color: $button-remove;
+  }
+
+  &--#{$name} {
+    background: none;
+
+    color: $color;
+    border: 2px solid $color;
+
+    &:hover {
+      color: white;
+      background: $color;
+    }
+  }
+}
+
+.manager-form {
+  min-width: 250px;
+  max-width: 800px;
+  width: 100%;
+
+  min-height: 200px;
+  max-height: 600px;
+  height: 100%;
+
+  padding: 10px;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  > * {
+    margin: 10px 0;
+  }
+
+  > input, > textarea {
+    &::placeholder {
+      color: $text-placeholder;
+    }
+  }
+
+  &__token {
+    background: $secondary;
+    color: $text;
+
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  &__emote-list {
+    flex-grow: 1;
+
+    background: $secondary;
+    color: $text;
+
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+
+    resize: none;
+  }
+
+  &__progress-bar {
+    height: 15px;
+    border-radius: 10px;
+    background: var(--progress-bar-empty);
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: space-around;
+
+    button {
+      max-width: 200px;
+      min-width: 60px;
+      width: 100%;
+
+      max-height: 40px;
+      min-height: 10px;
+      height: 100%;
+
+      padding: 10px;
+      border-radius: 10px;
+
+      margin-right: 5px;
+
+      cursor: pointer;
+
+      transition: .15s;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    @include colorize-button('add');
+    @include colorize-button('reset');
+    @include colorize-button('remove');
+  }
+}

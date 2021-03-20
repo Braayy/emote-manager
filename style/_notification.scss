@@ -1,0 +1,31 @@
+@import './theme';
+
+.notification {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 275px;
+  height: 50px;
+
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: top .5s;
+}
+
+.notification--info {
+  background: $button-add;
+}
+
+.notification--error {
+  background: $button-remove;
+}
+
+.notification--show {
+  top: 30px !important;
+}
