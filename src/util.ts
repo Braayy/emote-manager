@@ -1,6 +1,6 @@
-const emoteUrlRegex = /https:\/\/betterttv.com\/emotes\/(.+)/;
+const emoteUrlRegex = /https:\/\/betterttv.com\/emotes\/([a-z0-9]+)/;
 
-export function getUserId(token) {
+export function getUserId(token: string): string {
   const jwtParts = token.split('\.');
   const jwtPayloadEncoded = jwtParts[1];
   const jwtPayloadJsonString = atob(jwtPayloadEncoded);
@@ -9,8 +9,8 @@ export function getUserId(token) {
   return jwtPayload.id;
 }
 
-export function getEmoteIds() {
-  const emoteUrlsElement = document.querySelector('.emote-list__textarea');
+export function getEmoteIds(): string[] {
+  const emoteUrlsElement: HTMLTextAreaElement = document.querySelector('.manager-form__emote-list');
   const emoteUrls = emoteUrlsElement.value.split('\n');
 
   return emoteUrls.map((emoteUrl) => {
@@ -20,10 +20,10 @@ export function getEmoteIds() {
   });
 }
 
-export async function delay(delay) {
-  return new Promise((resolve, reject) => {
+export function delay(ms: number): Promise<void> {
+  return new Promise<void>((resolve) => {
     setTimeout(() => {
       resolve();
-    }, delay);
+    }, ms);
   });
 }

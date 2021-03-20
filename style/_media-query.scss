@@ -1,0 +1,44 @@
+@media screen and (max-width: 850px) {
+  .warning-modal {
+    width: 70%;
+
+    &__title, &__subtitle {
+      font-size: 20px;
+    }
+
+    &__text {
+      font-size: 13px;
+    }
+
+    &__accept {
+      width: 150px;
+      font-size: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .warning-modal {
+    &__title, &__subtitle {
+      font-size: 15px;
+    }
+
+    &__text {
+      font-size: 10px;
+    }
+  }
+}
+
+@media screen and (max-height: 500px) {
+  .warning-modal {
+    height: 250px;
+
+    &__title, &__subtitle {
+      font-size: 15px;
+    }
+
+    &__text {
+      font-size: 10px;
+    }
+  }
+}

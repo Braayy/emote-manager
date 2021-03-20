@@ -1,0 +1,26 @@
+@import 'reset';
+@import 'theme';
+
+@import './notification';
+@import './header';
+@import './content';
+@import './warning-modal';
+
+@import './media-query';
+
+* {
+  font-family: $font;
+}
+
+html, body {
+  background: $primary;
+  color: $text;
+}
+
+#app {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 75px 1fr;
+
+  grid-template-areas: "header" "content";
+}
