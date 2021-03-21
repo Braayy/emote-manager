@@ -1,50 +1,64 @@
 import '../style/index.scss';
-import { acceptWarning } from './warning';
-import { add, remove, reset } from './actions';
+
+import { add, remove, reset } from './actions/index';
 import { Level, notify } from './notification';
+import { acceptWarning } from './warning';
+import { setToken } from './store';
 import { validateToken } from './util';
 
-import { EmoteManager } from './types';
+window.onAcceptWarning = function() {
+  acceptWarning();
+}
 
-window.emoteManager = {
-  token: 'invalid',
+window.onAdd = function() {
+  add().catch((err) => {
+    notify('Something went wrong! See console', Level.ERROR);
 
-  setToken(tokenInput: HTMLInputElement) {
-    setTimeout(() => {
-      const token = tokenInput.value;
-      tokenInput.value = '';
+    console.error(err);
+  });
+}
 
-      if (!validateToken(token)) {
-        notify('Invalid Token', Level.ERROR);
+window.onReset = function() {
+  reset().catch((err) => {
+    notify('Something went wrong! See console', Level.ERROR);
 
-        return;
-      }
+    console.error(err);
+  });
+}
 
-      this.token = token;
+window.onRemove = function() {
+  remove().catch((err) => {
+    notify('Something went wrong! See console', Level.ERROR);
 
-      
-      tokenInput.remove();
+    console.error(err);
+  });
+}
 
-      notify('The token was pasted!', Level.INFO);
-    }, 1);
-  },
+window.onPasteToken = function(input: HTMLInputElement) {
+  setTimeout(() => {
+    const token = input.value;
+    input.value = '';
 
-  add() {
-    add(this.token);
-  },
+    if (!validateToken(token)) {
+      notify('Invalid Token', Level.ERROR);
 
-  reset() {
-    reset(this.token);
-  },
+      return;
+    }
 
-  remove() {
-    remove(this.token);
-  },
+    input.remove();
 
-  acceptWarning
-};
+    setToken(token);
+
+    notify('Token pasted!', Level.INFO);
+  }, 1);
+}
+
 declare global {
   interface Window {
-    emoteManager: EmoteManager
+    onAcceptWarning: () => void,
+    onAdd: () => void,
+    onReset: () => void,
+    onRemove: () => void,
+    onPasteToken: (input: HTMLInputElement) => void,
   }
 }

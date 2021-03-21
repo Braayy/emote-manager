@@ -1,4 +1,4 @@
-const emoteUrlRegex = /https:\/\/betterttv.com\/emotes\/([a-z0-9]+)/;
+const emoteUrlRegex = /^([a-z0-9]{24})$/;
 
 const emoteListElement: HTMLTextAreaElement = document.querySelector('.manager-form__emote-list');
 
@@ -14,10 +14,12 @@ export function getUserId(token: string): string {
 export function getEmoteIds(): string[] {
   const emoteUrls = emoteListElement.value.split('\n');
 
-  return emoteUrls.map((emoteUrl) => {
+  return emoteUrls.filter((emoteUrl) => {
+    return emoteUrl.match(emoteUrlRegex);
+  }).map((emoteUrl) => {
     const match = emoteUrl.match(emoteUrlRegex);
 
-    return match ? match[1] : null;
+    return match[1];
   });
 }
 
